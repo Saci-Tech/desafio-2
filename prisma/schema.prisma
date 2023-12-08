@@ -1,0 +1,35 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./prisma/client"
+}
+
+// Configuração do banco de dados MongoDB
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// Definição do modelo Asset
+model Asset {
+  id     String @id @default(auto()) @map("_id") @test.UUID
+  symbol String
+}
+
+// Definição do modelo Order
+model Order {
+  id      String @id @default(auto()) @map("_id") @test.UUID
+  assetId String
+  price   Float
+  status  String
+}
+
+// Relacionamento entre Order e Asset
+// Cada Order pertence a um Asset
+// Um Asset pode ter várias Orders
+model Asset {
+  id    String   @id @default(auto()) @map("_id") @test.UUID
+  symbol String
+  orders Order[]
+}

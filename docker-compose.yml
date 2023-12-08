@@ -1,0 +1,23 @@
+# docker-compose.yml
+
+version: '3'
+
+services:
+  nestjs-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - DATABASE_URL=mongodb://mongodb:27017/nestjs-docker-mongo
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: bitnami/mongodb:5.0.17
+    environment:
+      - MONGODB_ROOT_PASSWORD=root
+      - MONGODB_DATABASE=nestjs-docker-mongo
+    ports:
+      - '27017:27017'

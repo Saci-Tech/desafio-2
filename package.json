@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@nestjs/cli": "^10.2.1"
+  },
+  "dependencies": {
+    "@nestjs/swagger": "^7.1.16",
+    "@prisma/client": "^5.7.0",
+    "prisma": "^5.7.0",
+    "swagger-ui-express": "^5.0.0"
+  }
+}
